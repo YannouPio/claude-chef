@@ -5,13 +5,15 @@ import { getRecipeFromChefClaude, getRecipeFromMistral } from "./ai"
 
 export default function Main() {
     const [ingredients, setIngredients] = React.useState(
-        ["chicken", "all the main spices", "corn", "heavy cream", "pasta"]
+        []
     )
     const [recipe, setRecipe] = React.useState("")
 
     async function getRecipe() {
-        const recipeMarkdown = await getRecipeFromChefClaude(ingredients)
-        setRecipe(recipeMarkdown)
+      // const recipeMarkdown = await getRecipeFromChefClaude(ingredients);
+      // 修改这里，调用 Hugging Face 的 API 函数
+      const recipeMarkdown = await getRecipeFromMistral(ingredients);
+      setRecipe(recipeMarkdown);
     }
 
     function addIngredient(formData) {
